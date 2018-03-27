@@ -27,8 +27,7 @@ exportJars := true
 
 resolvers ++= Seq(
   "Sonatype OSS Releases"  at "http://oss.sonatype.org/content/repositories/releases/",
-  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
-//  "artifactory" at "http://pnfs.hlt.utdallas.edu:8081/artifactory/repo/"
+  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 )
 
 // Graph algorithm library
@@ -36,6 +35,9 @@ libraryDependencies ++= Seq(
   "net.sf.jung" % "jung-graph-impl" % "2.0.1",
   "net.sf.jung" % "jung-algorithms" % "2.0.1"
 )
+
+// hltri util
+libraryDependencies += "edu.utdallas.hltri" % "hltri-util" % "1.0.1"
 
 // WordNet interface
 libraryDependencies += "edu.mit" % "jwi" % "2.2.3"
@@ -57,6 +59,5 @@ libraryDependencies ++= Seq(
   "org.tukaani" % "xz" % "1.5"
 )
 
-lazy val scribe = project in file(".") /* aggregate(util) */ dependsOn util
+// lazy val scribe = project in file(".") /* aggregate(util) */ dependsOn util
 
-lazy val util = RootProject(file("../hltri-util"))
