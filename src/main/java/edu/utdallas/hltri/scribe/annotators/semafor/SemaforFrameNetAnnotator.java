@@ -38,10 +38,9 @@ public class SemaforFrameNetAnnotator<D extends BaseDocument> implements Annotat
   private static final Logger log = Logger.get(SemaforFrameNetAnnotator.class);
   private static final SAXBuilder builder = new SAXBuilder();
   private static final Multiset<String> frameCounts = TreeMultiset.create();
-  private final Config conf = Config.load("scribe.annotator.semafor");
+  private final Config conf = Config.load("scribe.annotators.semafor");
 
-  public static final Attribute<Sentence, List<Frame>>
-      Frames = Attribute.inferred("frames");
+  public static final Attribute<Sentence, List<Frame>> Frames = Attribute.inferred("frames");
 
   public SemaforFrameNetAnnotator() {
     //TODO: establish comminication with MST Server
@@ -104,10 +103,10 @@ public class SemaforFrameNetAnnotator<D extends BaseDocument> implements Annotat
         Sentence sent;
 
         for (final Element documents : builder.build(file).getRootElement().getChildren()) {
-          log.trace("-Name: {}", documents.getName());
+          log.debug("-Name: {}", documents.getName());
           if (documents.getName().equals("documents")) {
             for (final Element doc : documents.getChildren()) {
-              log.trace("--Name: {}", doc.getName());
+              log.debug("--Name: {}", doc.getName());
               if (doc.getName().equals("document")) {
                 for (final Element paragraphs : doc.getChildren()) {
                   if (paragraphs.getName().equals("paragraphs")) {
@@ -119,14 +118,14 @@ public class SemaforFrameNetAnnotator<D extends BaseDocument> implements Annotat
                               if (sentence.getName().equals("sentence")) {
                                 sent = it.next();
                                 frames = new ArrayList<>();
-                                log.trace("Sentence found: {}", sent.toString());
+                                log.debug("Sentence found: {}", sent.toString());
                                 final String semSentence = sentence.getChild("text").getValue();
                                 for (final Element annSets : sentence.getChildren()) {
                                   if (annSets.getName().equals("annotationSets")) {
-                                    log.trace("AnnSets found");
+                                    log.debug("AnnSets found");
                                     for (final Element annSet : annSets.getChildren()) {
                                       if (annSet.getName().equals("annotationSet")) {
-                                        log.info("Ann Set found: ", annSet.getAttributeValue("frameName"));
+                                        log.debug("Ann Set found: ", annSet.getAttributeValue("frameName"));
                                         frames.add(new Frame(annSet, sent, semSentence));
                                         frameCounts.add(annSet.getAttributeValue("frameName"));
                                       }

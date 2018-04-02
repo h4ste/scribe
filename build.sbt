@@ -2,7 +2,9 @@ name := "scribe"
 
 organization := "edu.utdallas.hltri"
 
-version := "0.3.1"
+version := "1.0.0"
+
+publishTo := sonatypePublishTo.value
 
 // enable publishing to maven
 publishMavenStyle := true
