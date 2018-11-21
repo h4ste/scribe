@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+    flatDir {
+        dirs 'lib'
+    }
+    maven { url "https://metamap.nlm.nih.gov/maven2" }
+//    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation 'gov.nih.nlm.nls:metamaplite:3.6.1'
+    // implementation 'com.github.lhncbc:metamaplite:RELEASE3.6.2rc1'
+
+    compile project(':scribe-api')
+
+    compile project(':scribe-bioc')
+
+    // Logging
+    implementation 'org.apache.logging.log4j:log4j-api:2.11.+'
+}

@@ -1,0 +1,48 @@
+subprojects {
+
+    group 'com.github.h4ste'
+
+    version '0.1.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+//
+//dependencies {
+//
+//
+//
+//
+//    // Jackson XML
+//    implementation 'com.fasterxml.jackson.core:jackson-core:2.6.1'
+//
+//    // HLTRI internals
+//    compile 'edu.utdallas.hltri:hltri-util:1.0.1'
+//
+//    // Compression
+//    compile 'org.apache.commons:commons-compress:1.9'
+//    compile 'org.tukaani:xr:1.5'
+//}
+
+
+//// WordNet interface
+//libraryDependencies += "edu.mit" % "jwi" % "2.2.3"
+//
+//// JDom for SemaforFrameNetAnnotator
+//libraryDependencies += "org.jdom" % "jdom2" % "2.0.5"
+//
+//libraryDependencies ++= Seq(
+//        "uk.ac.gate"        % "gate-core"         % "8.0" exclude("log4j", "log4j") exclude("commons-logging", "commons-logging"),
+//        "edu.stanford.nlp"  % "stanford-corenlp"  % "3.6.0",
+//        "edu.stanford.nlp"  % "stanford-corenlp" % "3.6.0" classifier "models",
+//        "com.google.code.findbugs" % "jsr305" % "3.0.+",
+//        "com.fasterxml.jackson.core" % "jackson-core" % "2.6.1"
+//)
+//
+//// Compression stuff
+//libraryDependencies ++= Seq(
+//        "org.apache.commons" % "commons-compress" % "1.9",
+//        "org.tukaani" % "xz" % "1.5"
+//)

@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+dependencies {
+    // Guava, used for collections
+    implementation 'com.google.guava:guava:21.+'
+
+    // Fast utils, used for primitive collections
+    implementation 'it.unimi.dsi:fastutil:8.2.1'
+
+    // Logging
+    implementation 'org.apache.logging.log4j:log4j-api:2.11.+'
+
+    compile project(':scribe:scribe-api')
+}

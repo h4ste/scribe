@@ -1,0 +1,22 @@
+package com.github.h4ste.scribe;
+
+import java.util.Comparator;
+
+/**
+ * Annotation.
+ *
+ * Created by travis on 7/15/14.
+ */
+@SuppressWarnings("unused")
+//public interface Annotation extends AnnotationLike {
+//
+//  static <A extends AnnotationLike> Comparator<A> documentOrder() {
+//    return IntInterval.<A>topologicalOrder().thenComparingLong(NumericIdentifiable::getNid);
+//  }
+//
+//  @Override default String describe() {
+//    return this.getAnnotationType() + AnnotationLike.super.describe();
+//  }
+//
+//  String getAnnotationType();
+//}
