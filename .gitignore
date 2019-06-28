@@ -208,3 +208,5 @@ docs/
 docs/sphinx/doctrees
 
 legacy
+
+build
