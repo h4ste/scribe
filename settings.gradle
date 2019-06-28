@@ -1,6 +1,8 @@
 rootProject.name = 'scribe'
+//include ':scribe-impl-standard'
+include 'scribe-api'
 
-//include 'scribe-impl-standard'
-//include 'scribe-api'
+includeFlat 'good-utils'
+include ':good-utils:good-util'
 
 //include 'scribe-annot-metamaplite'

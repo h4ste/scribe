@@ -1,10 +1,10 @@
 subprojects {
-
     group 'com.github.h4ste'
-
     version '0.1.0'
 
     repositories {
+        jcenter()
+
         mavenCentral()
     }
 }

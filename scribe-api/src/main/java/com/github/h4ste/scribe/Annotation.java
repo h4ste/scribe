@@ -2,12 +2,14 @@ package com.github.h4ste.scribe;
 
 import de.uka.ilkd.pp.DataLayouter;
 import de.uka.ilkd.pp.NoExceptions;
+
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public abstract class Annotation extends Annotatable implements BaseAnnotation, StringlyTyped, Comparable<Annotation> {
+public abstract class Annotation extends Annotatable implements BaseAnnotation, StringlyTyped,
+    Comparable<Annotation> {
 
   Set<String> tags;
   String type;
@@ -15,7 +17,8 @@ public abstract class Annotation extends Annotatable implements BaseAnnotation, 
 
   protected abstract AnnotationHandle implementor();
 
-  /* package-private */ abstract void setImplementor(AnnotationHandle handle);
+  /* package-private */
+  abstract void setImplementor(AnnotationHandle handle);
 
   @Override
   public String getAnnotationUid() {

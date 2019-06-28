@@ -4,12 +4,13 @@ plugins {
 }
 
 dependencies {
+    implementation project(':good-utils:good-util')
+
     // Guava, used for reflection caching
-    implementation 'com.google.guava:guava:26.0-jre'
+    implementation 'com.google.guava:guava:28.0-jre'
 
     // Logging
     implementation 'org.apache.logging.log4j:log4j-api:2.11.+'
-
-
+    
     api 'com.io7m.jpplib:com.io7m.jpplib.core:0.8.0'
 }
