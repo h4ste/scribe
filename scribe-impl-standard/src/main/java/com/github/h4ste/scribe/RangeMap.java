@@ -35,10 +35,10 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
   public static final long serialVersionUID = 1L;
 
   /**
-   * Imagine a number line. Take the set of start and stop coordinates for each object in the
+   * Imagine a number line. Take the set of maybeStart and stop coordinates for each object in the
    * RangeMap and place them on the number line. This divides the number line into a series of
    * intervals. Each interval can be associated with a distinct list of objects that contain all
-   * points in that interval. The RangeMap is a sorted map that keys the start of the interval to
+   * points in that interval. The RangeMap is a sorted map that keys the maybeStart of the interval to
    * this distinct list of objects. <p> Objects that fully contain the points in more than one
    * interval will be contained in multiple lists. One list for each interval they contain.
    */
@@ -55,10 +55,10 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
   }
 
   /**
-   * Keeps track of the start and end for each object in the map so we can
+   * Keeps track of the maybeStart and end for each object in the map so we can
    * remove them easily if necessary.
    *
-   * Maps Object -> int[2]. the first element in the array is the start of
+   * Maps Object -> int[2]. the first element in the array is the maybeStart of
    * the key and the second element is the end of the key.
    */
   private final Map<T, IntBounds> objectList;
@@ -85,7 +85,7 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
   }
 
   /**
-   * Returns the start of the first non-empty interval.  If the RangeMap has no entries, returns 0.
+   * Returns the maybeStart of the first non-empty interval.  If the RangeMap has no entries, returns 0.
    */
   public int getStart() {
     return size() == 0 ? 0 : map.firstKey();
@@ -100,7 +100,7 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
 
   /**
    * An interval is a convenient data structure used to return a section of a RangeMap. It contains
-   * a start, a stop, and a set of elements that occur in that range.
+   * a maybeStart, a stop, and a set of elements that occur in that range.
    */
   @SuppressWarnings("unused")
   private static class Interval<K> {
@@ -287,8 +287,8 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
   }
 
   /**
-   * Like getIntervals, but allows you to define a start and stop.  First and last interval are
-   * guaranteed to start and stop at the endpoints.
+   * Like getIntervals, but allows you to define a maybeStart and stop.  First and last interval are
+   * guaranteed to maybeStart and stop at the endpoints.
    */
   private List<Interval<T>> getIntervals(int start, int stop) {
     List<Interval<T>> list = new ArrayList<>();
@@ -327,7 +327,7 @@ public class RangeMap<T> extends AbstractSet<T> implements Serializable {
   }
 
   /**
-   * Returns the empty intervals.  A start and stop are required to bound the edges of the first and
+   * Returns the empty intervals.  A maybeStart and stop are required to bound the edges of the first and
    * last region.  These bounds can be within the existing region. The returned intervals are
    * closed.
    */

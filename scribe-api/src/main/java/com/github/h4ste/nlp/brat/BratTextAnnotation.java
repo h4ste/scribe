@@ -57,8 +57,8 @@ public class BratTextAnnotation extends BratAnnotation {
       final Iterator<String> attrFields = ATTR_SPLITTER.split(attr).iterator();
 
       final String annotType = nextOrIOException(attrFields, "missing annotation type/name");
-      final int start = parsePositiveInt(nextOrIOException(attrFields, "missing start offset"),
-          "invalid start offset");
+      final int start = parsePositiveInt(nextOrIOException(attrFields, "missing maybeStart offset"),
+          "invalid maybeStart offset");
       final int end = parsePositiveInt(nextOrIOException(attrFields, "missing end offset"),
           "invalid end offset");
 

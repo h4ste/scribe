@@ -35,7 +35,7 @@ public class BratAttributeAnnotation extends BratAnnotation implements BratModif
       final String key = nextOrIOException(fields, "missing annotation id");
       final char bratType = key.charAt(0);
       assert bratType == ANNOT_TYPE : "invalid normalization annotation id \"" + key
-          + "\" (should start with '" + bratType + "' not '" + bratType + "'";
+          + "\" (should maybeStart with '" + bratType + "' not '" + bratType + "'";
       final int index = parsePositiveInt(key.substring(1), "invalid annotation index");
 
       final String attr = nextOrIOException(fields, "missing annotation fields");

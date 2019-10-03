@@ -11,10 +11,6 @@ import java.util.stream.Stream;
 public abstract class Annotation extends Annotatable implements BaseAnnotation, StringlyTyped,
     Comparable<Annotation> {
 
-  Set<String> tags;
-  String type;
-  String annotationUid;
-
   protected abstract AnnotationHandle implementor();
 
   /* package-private */
