@@ -156,8 +156,19 @@ public class BratDocument implements Describable {
             textNid.incrementAndGet();
             break;
           case 'A':
-            addAttribute(BratAttributeAnnotation.fromString(line).shiftIndex(attrNidShift)
-                .shiftParent(textNidShift));
+            final BratAttributeAnnotation brat = BratAttributeAnnotation.fromString(line);
+            int shift;
+            switch (brat.getParentId().charAt(0)) {
+              case 'N':
+                shift = normNidShift;
+                break;
+              case 'T':
+                shift = textNidShift;
+                break;
+              default:
+                throw new UnsupportedOperationException("Encountered attribute for unsupported annotation type: " + brat.getParentId() + "(excepted N## or T##)");
+            }
+            addAttribute(brat.shiftIndex(attrNidShift).shiftParent(shift));
             attrNid.incrementAndGet();
             break;
           case 'N':
@@ -221,8 +232,9 @@ public class BratDocument implements Describable {
   }
 
   public BratDocument addAttribute(BratAttributeAnnotation annot) {
-    assert textAnnots
-        .containsColumn(annot.getParentId()) : "Attribute refers to non-existent parent";
+    assert textAnnots.containsColumn(annot.getParentId())  ||
+           normalizations.containsColumn(annot.getParentId())
+           : "Attribute refers to non-existent parent";
     Set<BratAttributeAnnotation> attrs = attributes.get(annot.getParentId(), annot.getType());
     if (attrs == null) {
       attrs = new HashSet<>();
@@ -232,12 +244,12 @@ public class BratDocument implements Describable {
     return this;
   }
 
-  public BratDocument addNewNormalization(String parentId, String source, String sourceId,
+  public BratNormalizationAnnotation newNormalization(String parentId, String source, String sourceId,
       String sourceText) {
-    return addNormalization(new BratNormalizationAnnotation(
+    return new BratNormalizationAnnotation(
         normNid.incrementAndGet(),
         parentId,
-        source, sourceId, sourceText));
+        source, sourceId, sourceText);
   }
 
   public BratDocument addNormalization(BratNormalizationAnnotation annot) {

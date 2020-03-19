@@ -75,9 +75,9 @@ public class Brat2Scribe<D extends Text> {
 
       final TextAnnotation annot = textMapping.converter.apply(bratAnnot, bratDoc);
       final String textSpan = annot.toString();
-      assert !bratAnnot.hasText() || textSpan.equals(bratAnnot.getText()) : "Text span @[" + annot.getStart() + ", "
-          + annot.getEnd() + "]=\"" + textSpan + "\" != brat text \"" + bratAnnot.getText()
-          + "\"!";
+      assert !bratAnnot.hasText() || textSpan.equals(bratAnnot.getText())
+          : "Text span @[" + annot.getStart() + ", "           + annot.getEnd() + "]=\"" + textSpan
+          + "\" != brat text \"" + bratAnnot.getText() + "\"!";
 
       scribeDoc.addAnnotation(annot, textMapping.tags);
       textAnnotations.put(bratAnnot.getId(), annot);

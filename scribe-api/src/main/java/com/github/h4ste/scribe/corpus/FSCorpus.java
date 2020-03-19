@@ -1,51 +1,53 @@
 //package com.github.h4ste.scribe.corpus;
 //
 //import com.github.h4ste.scribe.Annotatable;
-//import com.google.common.collect.ImmutableList;
 //import java.nio.file.Path;
 //import java.util.Collection;
+//import java.util.Iterator;
+//import java.util.Objects;
+//import java.util.Spliterator;
+//import java.util.function.Consumer;
 //import java.util.function.Function;
+//import java.util.stream.Stream;
 //
-//public class FSCorpus<K, D extends Annotatable> extends ManagedCorpus<Path, D> {
-//  private final Collection<Path> textDirectories;
-//  private final Collection<Path> annotationDirectories;
-//  private final Function<K, Path> toPathFunction;
+//public class FSCorpus<D extends Annotatable> extends Corpus<D> {
+//  final Collection<Path> files;
+//  final Function<? super Path, ? extends D> reader;
 //
-//  protected FSCorpus(Collection<Path> textDirectories,
-//      Collection<Path> annotationDirectories,
-//      Function<K, Path> toPathFunction) {
-//    this.textDirectories = textDirectories;
-//    this.annotationDirectories = annotationDirectories;
-//    this.toPathFunction = toPathFunction
-//  }
-//
-//  public class FSCorpusBuilder {
-//    private final ImmutableList.Builder<Path> textDirectories = ImmutableList.builder();
-//    private final ImmutableList.Builder<Path> annotationDirectories = ImmutableList.builder();
-//
-//    private FSCorpusBuilder(Path textDirectory) {
-//      this.textDirectories.add(textDirectory);
-//    }
-//
-//    public FSCorpusBuilder addTextDirectory(Path directory) {
-//      this.textDirectories.add(directory);
-//      return this;
-//    }
-//
-//    public FSCorpusBuilder addAnnotationDirectory(Path directory) {
-//      this.annotationDirectories.add(directory);
-//      return this;
-//    }
-//
-//
-//    public FSCorpus<D> build() {
-//      return new FSCorpus<>(textDirectories.build(), annotationDirectories.build());
-//    }
-//  }
-//
-//  public D load(K key) {
-//    return this.load(toPathFunction.apply(key));
+//  public FSCorpus(Collection<Path> files,
+//      Function<? super Path, ? extends D> reader) {
+//    this.files = files;
+//    this.reader = reader;
 //  }
 //
 //
+//  public Stream<D> stream() {
+//    return files.stream().map(reader);
+//  }
+//
+//
+//  @Override
+//  public Iterator<D> iterator() {
+//    return stream().iterator();
+//  }
+//
+//  @Override
+//  public void forEach(Consumer<? super D> action) {
+//    stream().forEach(action);
+//  }
+//
+//  @Override
+//  public Spliterator<D> spliterator() {
+//    return stream().spliterator();
+//  }
+//
+//  @Override
+//  public long size() {
+//    return files.size();
+//  }
+//
+//  @Override
+//  public boolean contains(D document) {
+//    return stream().anyMatch(d -> Objects.equals(d, document));
+//  }
 //}
